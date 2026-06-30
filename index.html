@@ -196,4 +196,48 @@ const bakery2 = new THREE.Mesh(
 bakery2.position.set(45, 1.5, -12);
 scene.add(bakery2);
 
-// Borracharia duplic
+// Borracharia duplicada
+const tireShop2 = new THREE.Mesh(
+  new THREE.BoxGeometry(6, 3, 4),
+  new THREE.MeshStandardMaterial({ color: 0x999999 })
+);
+tireShop2.position.set(55, 1.5, -13);
+scene.add(tireShop2);
+
+// Árvores e postes duplicados
+createTree(42, -6);
+createTree(58, -6);
+createLamp(44, -2);
+createLamp(54, 2);
+
+// --- Ponte entre as duas regiões ---
+const bridge = new THREE.Mesh(
+  new THREE.BoxGeometry(10, 0.5, 4),
+  new THREE.MeshStandardMaterial({ color: 0x8B4513 })
+);
+bridge.position.set(25, 0, 0); // bem no meio
+scene.add(bridge);
+
+    // Loop de animação
+    function animate() {
+      requestAnimationFrame(animate);
+
+      car1.position.x += 0.02;
+      if (car1.position.x > 6) car1.position.x = -6;
+
+      car2.position.x -= 0.015;
+      if (car2.position.x < -6) car2.position.x = 6;
+
+      car3.position.x += 0.01;
+      if (car3.position.x > 6) car3.position.x = -6;
+
+      moveCustomers();
+      checkConversation();
+
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>
+
