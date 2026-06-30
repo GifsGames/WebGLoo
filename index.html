@@ -206,7 +206,7 @@
       requestAnimationFrame(animate);
 
       car1.position.x += 0.02;
-      if (car1.position.x > 20) car1.position.x = -20;
+      if (car1.position.x > 20) car1.position.x = -10;
 
       car2.position.x -= 0.015;
       if (car2.position.x < -6) car2.position.x = 6;
@@ -237,40 +237,6 @@
       if (event.key === "ArrowLeft") girl.position.x -= 0.2;
       if (event.key === "ArrowRight") girl.position.x += 0.2;
     });
-    // --- Prefeitura ---
-const prefeitura = new THREE.Mesh(
-  new THREE.BoxGeometry(8, 4, 5),
-  new THREE.MeshStandardMaterial({ color: 0x336699 }) // azul institucional
-);
-prefeitura.position.set(0, 2, -12);
-scene.add(prefeitura);
-
-// Fachada da prefeitura
-const fachadaPrefeituraTexture = loader.load("https://i.imgur.com/2hXQ5kL.png"); // exemplo de fachada
-const fachadaPrefeitura = new THREE.Mesh(
-  new THREE.PlaneGeometry(8, 4),
-  new THREE.MeshStandardMaterial({ map: fachadaPrefeituraTexture })
-);
-fachadaPrefeitura.position.set(0, 2, -10.2);
-scene.add(fachadaPrefeitura);
-
-// --- Banco em frente à prefeitura ---
-const bancoPrefeitura = new THREE.Mesh(
-  new THREE.BoxGeometry(4, 0.5, 1.2),
-  new THREE.MeshStandardMaterial({ color: 0x996633 })
-);
-bancoPrefeitura.position.set(0, 0.25, -6); // bem na frente da prefeitura
-scene.add(bancoPrefeitura);
-    function checkConversation() {
-  const distBoy = Math.sqrt((boy.position.x - bancoPrefeitura.position.x)**2 + (boy.position.z - bancoPrefeitura.position.z)**2);
-  const distGirl = Math.sqrt((girl.position.x - bancoPrefeitura.position.x)**2 + (girl.position.z - bancoPrefeitura.position.z)**2);
-  if (distBoy < 1 && distGirl < 1) {
-    hudText = "🧑🏻 Rapaz: A prefeitura precisa cuidar melhor da praça!\n👩🏻 Moça: Sim, vamos falar com o prefeito!\n🏛️ Prefeitura: O coração da cidade está aqui!";
-    document.getElementById("hud").innerText = hudText;
-  }
-}
-
-
   </script>
 </body>
 </html>
