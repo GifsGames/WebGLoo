@@ -27,8 +27,7 @@
     document.body.appendChild(renderer.domElement);
 
     // Luz
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-    scene.add(ambientLight);
+    scene.add(new THREE.AmbientLight(0xffffff, 1.2));
     const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
     dirLight.position.set(5, 10, 7.5);
     scene.add(dirLight);
@@ -165,7 +164,7 @@
       }
     }
 
-       // --- Segunda região ---
+        // --- Segunda região ---
     const street2 = new THREE.Mesh(
       new THREE.PlaneGeometry(40, 20),
       new THREE.MeshStandardMaterial({ color: 0x333333, side: THREE.DoubleSide })
@@ -241,4 +240,3 @@
   </script>
 </body>
 </html>
-
