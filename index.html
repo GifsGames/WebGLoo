@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -27,14 +28,100 @@
     document.body.appendChild(renderer.domElement);
 
     // Luz
-    scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    scene.add(ambientLight);
     const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
     dirLight.position.set(5, 10, 7.5);
     scene.add(dirLight);
 
+    // Rua
+    const street = new THREE.Mesh(
+      new THREE.PlaneGeometry(40, 20),
+      new THREE.MeshStandardMaterial({ color: 0x333333, side: THREE.DoubleSide })
+    );
+    street.rotation.x = Math.PI / 2;
+    scene.add(street);
+
+    // Banco único
+    const bench = new THREE.Mesh(
+      new THREE.BoxGeometry(4, 0.5, 1.2),
+      new THREE.MeshStandardMaterial({ color: 0x996633 })
+    );
+    bench.position.set(0, 0.25, -9);
+    scene.add(bench);
+
+    // Carros com textura
+    function createCar(textureURL, x, z) {
+      const loader = new THREE.TextureLoader();
+      const carTexture = loader.load(textureURL);
+
+      const car = new THREE.Mesh(
+        new THREE.BoxGeometry(4, 2, 0.1),
+        new THREE.MeshStandardMaterial({ map: carTexture })
+      );
+      car.position.set(x, 0.4, z);
+      scene.add(car);
+      return car;
+    }
+
+    // Exemplos com links diretos (terminam em .png)
+    const car1 = createCar("https://i.imgur.com/ZffpE3q.png", -5, 2);   // carro vermelho
+    const car2 = createCar("https://i.imgur.com/cmhonW3.png", 5, -2);  // carro azul
+    const car3 = createCar("https://i.imgur.com/ZffpE3q.png", -2, -4); // carro verde
     const loader = new THREE.TextureLoader();
 
-    // Funções auxiliares
+    // Rapaz (Sprite nítido)
+    const boyFace = loader.load("https://i.imgur.com/C2QhuQh.png");
+    const boy = new THREE.Sprite(new THREE.SpriteMaterial({ map: boyFace }));
+    boy.scale.set(1.5, 1.5, 1);
+    boy.position.set(-6, 0.6, 0);
+    scene.add(boy);
+
+    // Moça (Sprite nítido)sssssssssssss
+    const girlFace = loader.load("https://i.imgur.com/6WmxRxk.png");
+    const girl = new THREE.Sprite(new THREE.SpriteMaterial({ map: girlFace }));
+    girl.scale.set(1.5, 1.5, 1);
+    girl.position.set(6, 0.6, 0);
+    scene.add(girl);
+
+        // Padaria
+    const bakery = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color: 0xffcc66 }));
+    bakery.position.set(0, 1.5, -12.0);
+    scene.add(bakery);
+
+    const fachadaTexture = loader.load("https://i.imgur.com/ywvsTHj.png");
+const fachada = new THREE.Mesh(
+    new THREE.PlaneGeometry(6, 3),
+    new THREE.MeshStandardMaterial({ map: fachadaTexture })
+);
+fachada.position.set(0, 1.5, -10);
+scene.add(fachada);
+
+
+    // Borracharia
+    const tireShop = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color: 0x999999 }));
+    tireShop.position.set(6, 1.5, -13.0);
+    scene.add(tireShop);
+
+    const fachadaBorrachariaTexture = loader.load("https://i.imgur.com/ZQMzpcJ.png");
+const fachadaBorracharia = new THREE.Mesh(
+    new THREE.PlaneGeometry(6, 3),
+    new THREE.MeshStandardMaterial({ map: fachadaBorrachariaTexture })
+);
+fachadaBorracharia.position.set(6, 1.5, -10.2); // colada na frente do prédio
+scene.add(fachadaBorracharia);
+
+    // Clientes
+    function createCustomer(x, z, color) {
+      const cust = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 16), new THREE.MeshStandardMaterial({ color }));
+      cust.position.set(x, 0.2, z);
+      scene.add(cust);
+      return cust;
+    }
+    const cust1 = createCustomer(-5, -12, 0xffff00);
+    const cust2 = createCustomer(5, -12, 0x00ff00);
+
+        // Postes de luz
     function createLamp(x, z) {
       const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 4), new THREE.MeshStandardMaterial({ color: 0x888888 }));
       pole.position.set(x, 2, z);
@@ -43,7 +130,11 @@
       lamp.position.set(x, 4, z);
       scene.add(lamp);
     }
+    createLamp(-8, -2);
+    createLamp(8, 2);
 
+
+    // Árvores
     function createTree(x, z) {
       const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 1), new THREE.MeshStandardMaterial({ color: 0x663300 }));
       trunk.position.set(x, 0.5, z);
@@ -52,76 +143,10 @@
       crown.position.set(x, 1.5, z);
       scene.add(crown);
     }
+    createTree(-10, -6);
+    createTree(10, -6);
 
-    function createArea(offsetX) {
-      // Rua
-      const street = new THREE.Mesh(
-        new THREE.PlaneGeometry(40, 20),
-        new THREE.MeshStandardMaterial({ color: 0x333333, side: THREE.DoubleSide })
-      );
-      street.rotation.x = Math.PI / 2;
-      street.position.set(offsetX, 0, 0);
-      scene.add(street);
-
-      // Padaria
-      const bakery = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color: 0xffcc66 }));
-      bakery.position.set(offsetX - 5, 1.5, -12);
-      scene.add(bakery);
-
-      // Borracharia
-      const tireShop = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color: 0x999999 }));
-      tireShop.position.set(offsetX + 5, 1.5, -13);
-      scene.add(tireShop);
-
-      // Árvores e postes
-      createTree(offsetX - 10, -6);
-      createTree(offsetX + 10, -6);
-      createLamp(offsetX - 8, -2);
-      createLamp(offsetX + 8, 2);
-    }
-
-    // Criar duas áreas
-    createArea(0);   // Área esquerda
-    createArea(45);  // Área direita
-
-    // Ponte
-    const bridge = new THREE.Mesh(
-      new THREE.BoxGeometry(10, 0.5, 4),
-      new THREE.MeshStandardMaterial({ color: 0x8B4513 })
-    );
-    bridge.position.set(22, 0.25, -10);
-    scene.add(bridge);
-
-    // Carros
-    function createCar(textureURL, x, z, speed) {
-      const carTexture = loader.load(textureURL);
-      const car = new THREE.Mesh(
-        new THREE.BoxGeometry(4, 2, 0.1),
-        new THREE.MeshStandardMaterial({ map: carTexture })
-      );
-      car.position.set(x, 0.4, z);
-      car.userData.speed = speed;
-      scene.add(car);
-      return car;
-    }
-    const car1 = createCar("https://i.imgur.com/ZffpE3q.png", -5, 2, 0.02);
-    const car2 = createCar("https://i.imgur.com/cmhonW3.png", 5, -2, -0.015);
-    const car3 = createCar("https://i.imgur.com/ZffpE3q.png", -2, -4, 0.01);
-
-    // Personagens
-    const boyFace = loader.load("https://i.imgur.com/C2QhuQh.png");
-    const boy = new THREE.Sprite(new THREE.SpriteMaterial({ map: boyFace }));
-    boy.scale.set(1.5, 1.5, 1);
-    boy.position.set(-6, 0.6, 0);
-    scene.add(boy);
-
-    const girlFace = loader.load("https://i.imgur.com/6WmxRxk.png");
-    const girl = new THREE.Sprite(new THREE.SpriteMaterial({ map: girlFace }));
-    girl.scale.set(1.5, 1.5, 1);
-    girl.position.set(6, 0.6, 0);
-    scene.add(girl);
-
-    camera.position.set(0, 8, 20);
+    camera.position.set(0, 8, 16);
     camera.lookAt(0, 0, 0);
 
     let hudText = "🎮 RadioLegendsHQ - Beta\nUse WASD para mover o rapaz, setas para mover a moça!";
@@ -140,15 +165,39 @@
       if(event.key === "ArrowRight") girl.position.x += 0.2;
     });
 
+    // Movimento dos clientes
+    function moveCustomers() {
+      cust1.position.z += 0.02;
+      if (cust1.position.z > -8) cust1.position.z = -12;
+      cust2.position.z += 0.015;
+      if (cust2.position.z > -8) cust2.position.z = -12;
+    }
+
+    // Conversa no banco
+    function checkConversation() {
+      const distBoy = Math.sqrt((boy.position.x - bench.position.x)**2 + (boy.position.z - bench.position.z)**2);
+      const distGirl = Math.sqrt((girl.position.x - bench.position.x)**2 + (girl.position.z - bench.position.z)**2);
+      if (distBoy < 1 && distGirl < 1) {
+        hudText = "👦 Rapaz: Que bom te ver!\n👩 Moça: Vamos sentar juntos no banco!\n🍞 A padaria está cheia de gente!\n🛞 Ao lado: A borracharia está aberta!";
+        document.getElementById("hud").innerText = hudText;
+      }
+    }
+
     // Loop de animação
     function animate() {
       requestAnimationFrame(animate);
 
-      [car1, car2, car3].forEach(car => {
-        car.position.x += car.userData.speed;
-        if (car.position.x > 6) car.position.x = -6;
-        if (car.position.x < -6) car.position.x = 6;
-      });
+      car1.position.x += 0.02;
+      if (car1.position.x > 6) car1.position.x = -6;
+
+      car2.position.x -= 0.015;
+      if (car2.position.x < -6) car2.position.x = 6;
+
+      car3.position.x += 0.01;
+      if (car3.position.x > 6) car3.position.x = -6;
+
+      moveCustomers();
+      checkConversation();
 
       renderer.render(scene, camera);
     }
@@ -156,4 +205,3 @@
   </script>
 </body>
 </html>
-
