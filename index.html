@@ -234,20 +234,21 @@ if (car1.position.x < -10) { // voltou para o início
   car1.userData.direction = 1; // vai para direita de novo
 }
 
-    // Loop de animação
+   // Loop de animação
     function animate() {
       requestAnimationFrame(animate);
-      car1.position.x += 0.02;
-      if (car1.position.x > 6) car1.position.x = -6;
-     
+
+      // Carro 1 atravessa ponte e volta
+      car1.position.x += car1.userData.speed * car1.userData.direction;
+      if (car1.position.x > 55) car1.userData.direction = -1;
+      if (car1.position.x < -10) car1.userData.direction = 1;
+
+      // Carros 2 e 3 continuam com lógica simples
       car2.position.x -= 0.015;
       if (car2.position.x < -6) car2.position.x = 6;
 
       car3.position.x += 0.01;
       if (car3.position.x > 6) car3.position.x = -6;
-
-      moveCustomers();
-      checkConversation();
 
       renderer.render(scene, camera);
     }
