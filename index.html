@@ -218,28 +218,25 @@ const bridge = new THREE.Mesh(
 bridge.position.set(25, 0, 0); // bem no meio
 scene.add(bridge);
 
+    // Loop de animação
     function animate() {
-  requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
 
-  // Carro 1 atravessa ponte sempre reto
-  car1.position.x += car1.userData.speed;
-  if (car1.position.x > 55) {
-    // chegou na segunda região → volta para o início
-    car1.position.x = -10;
-  }
+      car1.position.x += 0.02;
+      if (car1.position.x > 6) car1.position.x = -6;
 
-  // Carros 2 e 3 continuam com lógica simples
-  car2.position.x -= 0.015;
-  if (car2.position.x < -6) car2.position.x = 6;
+      car2.position.x -= 0.015;
+      if (car2.position.x < -6) car2.position.x = 6;
 
-  car3.position.x += 0.01;
-  if (car3.position.x > 6) car3.position.x = -6;
+      car3.position.x += 0.01;
+      if (car3.position.x > 6) car3.position.x = -6;
 
-  moveCustomers();
-  checkConversation();
+      moveCustomers();
+      checkConversation();
 
-  renderer.render(scene, camera);
-}
+      renderer.render(scene, camera);
+    }
+    animate();
   </script>
 </body>
 </html>
