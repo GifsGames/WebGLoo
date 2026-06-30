@@ -243,10 +243,15 @@ car1.userData.direction = 1; // 1 = indo para direita, -1 = voltando
 function animate() {
   requestAnimationFrame(animate);
 
-  // Carro 1 atravessa ponte e volta
-  car1.position.x += car1.userData.speed * car1.userData.direction;
-  if (car1.position.x > 55) car1.userData.direction = -1; // chegou na segunda região
-  if (car1.position.x < -10) car1.userData.direction = 1; // voltou para o início
+ function animate() {
+  requestAnimationFrame(animate);
+
+  // Carro 1 atravessa ponte sempre reto
+  car1.position.x += car1.userData.speed;
+  if (car1.position.x > 55) {
+    // chegou na segunda região → volta para o início
+    car1.position.x = -10;
+  }
 
   // Carros 2 e 3 continuam com lógica simples
   car2.position.x -= 0.015;
@@ -260,7 +265,6 @@ function animate() {
 
   renderer.render(scene, camera);
 }
-animate();
 
   </script>
 </body>
