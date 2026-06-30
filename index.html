@@ -217,6 +217,27 @@ scene.add(bancoEncontro);
     document.getElementById("hud").innerText = hudText;
   }
 }  
+    // --- Cliente amarelo com cabeça ---
+const clienteFace = loader.load("https://i.imgur.com/C2QhuQh.png"); // pode usar a mesma imagem do rapaz
+const clienteHead = new THREE.Sprite(new THREE.SpriteMaterial({ map: clienteFace }));
+clienteHead.scale.set(1, 1, 1);
+scene.add(clienteHead);
+
+// Movimento dos clientes (com cabeça no amarelo)
+function moveCustomers() {
+  cust1.position.z += 0.02;
+  if (cust1.position.z > -8) cust1.position.z = -12;
+
+  cust2.position.z += 0.015;
+  if (cust2.position.z > -8) cust2.position.z = -12;
+
+  // A cabeça segue o cliente amarelo
+  clienteHead.position.set(cust1.position.x, cust1.position.y + 0.5, cust1.position.z);
+
+  // Faz a cabeça girar levemente
+  clienteHead.rotation.z += 0.05;
+}
+
     // Loop de animação
     function animate() {
       requestAnimationFrame(animate);
