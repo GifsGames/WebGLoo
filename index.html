@@ -216,32 +216,7 @@ scene.add(bancoEncontro);
     hudText = "🧑🏻 Rapaz: Esse banco é perfeito pra conversar!\n👩🏻 Moça: Sim, vamos ate a prefeitura!\n🏛️ Prefeitura: O coração da cidade está aqui!";
     document.getElementById("hud").innerText = hudText;
   }
-}
-    // --- Banco na segunda região ---
-const bancoRegiao2 = new THREE.Mesh(
-  new THREE.BoxGeometry(4, 0.5, 1.2),
-  new THREE.MeshStandardMaterial({ color: 0x996633 })
-);
-// Coloque o banco no piso cinza da segunda região
-bancoRegiao2.position.set(50, 0.25, -6); 
-scene.add(bancoRegiao2);
-function checkConversation() {
-  const distBoy1 = Math.sqrt((boy.position.x - bancoPrefeitura.position.x)**2 + (boy.position.z - bancoPrefeitura.position.z)**2);
-  const distGirl1 = Math.sqrt((girl.position.x - bancoPrefeitura.position.x)**2 + (girl.position.z - bancoPrefeitura.position.z)**2);
-
-  const distBoy2 = Math.sqrt((boy.position.x - bancoRegiao2.position.x)**2 + (boy.position.z - bancoRegiao2.position.z)**2);
-  const distGirl2 = Math.sqrt((girl.position.x - bancoRegiao2.position.x)**2 + (girl.position.z - bancoRegiao2.position.z)**2);
-
-  if (distBoy1 < 1 && distGirl1 < 1) {
-    hudText = "🧑🏻 Rapaz: A prefeitura precisa cuidar melhor da praça!\n👩🏻 Moça: Sim, vamos falar com o prefeito!\n🏛️ Prefeitura: O coração da cidade está aqui!";
-    document.getElementById("hud").innerText = hudText;
-  }
-
-  if (distBoy2 < 1 && distGirl2 < 1) {
-    hudText = "🧑🏻 Rapaz: Esse banco novo aqui na segunda região é ótimo!\n👩🏻 Moça: Sim, dá pra descansar e conversar!\n🌳 Região 2: Um espaço tranquilo da cidade!";
-    document.getElementById("hud").innerText = hudText;
-  }
-}
+}  
     // Loop de animação
     function animate() {
       requestAnimationFrame(animate);
