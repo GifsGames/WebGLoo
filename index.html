@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>WebGLoo - Duas Áreas com Ponte</title>
+  <title>RadioLegendsHQ - Bairro Vivo</title>
   <style>
     body { margin: 0; overflow: hidden; background: #111; }
     canvas { display: block; }
@@ -18,7 +17,7 @@
   </style>
 </head>
 <body>
-  <div id="hud">🎮 WebGLoo \nUse WASD para mover o rapaz, setas para mover a moça!</div>
+  <div id="hud">🎮 RadioLegendsHQ - Beta\nUse WASD para mover o rapaz, setas para mover a moça!</div>
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script>
     const scene = new THREE.Scene();
@@ -28,8 +27,7 @@
     document.body.appendChild(renderer.domElement);
 
     // Luz
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-    scene.add(ambientLight);
+    scene.add(new THREE.AmbientLight(0xffffff, 1.2));
     const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
     dirLight.position.set(5, 10, 7.5);
     scene.add(dirLight);
@@ -94,8 +92,24 @@
     bridge.position.set(22, 0.25, -10);
     scene.add(bridge);
 
+    // Carros
+    function createCar(textureURL, x, z, speed) {
+      const carTexture = loader.load(textureURL);
+      const car = new THREE.Mesh(
+        new THREE.BoxGeometry(4, 2, 0.1),
+        new THREE.MeshStandardMaterial({ map: carTexture })
+      );
+      car.position.set(x, 0.4, z);
+      car.userData.speed = speed;
+      scene.add(car);
+      return car;
+    }
+    const car1 = createCar("https://i.imgur.com/ZffpE3q.png", -5, 2, 0.02);
+    const car2 = createCar("https://i.imgur.com/cmhonW3.png", 5, -2, -0.015);
+    const car3 = createCar("https://i.imgur.com/ZffpE3q.png", -2, -4, 0.01);
+
     // Personagens
-    const boyFace = loader.load("https://i.imgur.com/uatbeLt.png");
+    const boyFace = loader.load("https://i.imgur.com/C2QhuQh.png");
     const boy = new THREE.Sprite(new THREE.SpriteMaterial({ map: boyFace }));
     boy.scale.set(1.5, 1.5, 1);
     boy.position.set(-6, 0.6, 0);
@@ -109,6 +123,9 @@
 
     camera.position.set(0, 8, 20);
     camera.lookAt(0, 0, 0);
+
+    let hudText = "🎮 RadioLegendsHQ - Beta\nUse WASD para mover o rapaz, setas para mover a moça!";
+    document.getElementById("hud").innerText = hudText;
 
     // Controles
     window.addEventListener("keydown", (event) => {
@@ -126,9 +143,17 @@
     // Loop de animação
     function animate() {
       requestAnimationFrame(animate);
+
+      [car1, car2, car3].forEach(car => {
+        car.position.x += car.userData.speed;
+        if (car.position.x > 6) car.position.x = -6;
+        if (car.position.x < -6) car.position.x = 6;
+      });
+
       renderer.render(scene, camera);
     }
     animate();
   </script>
 </body>
 </html>
+
