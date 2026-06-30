@@ -200,14 +200,7 @@
     );
     bridge.position.set(25, 0, 0);
     scene.add(bridge);
-
-    // --- Banco em frente à prefeitura ---
-const bancoPrefeitura = new THREE.Mesh(
-  new THREE.BoxGeometry(4, 0.5, 1.2),
-  new THREE.MeshStandardMaterial({ color: 0x996633 })
-);
-bancoPrefeitura.position.set(0, 0.25, -6); // posição central, perto da rua
-scene.add(bancoPrefeitura);
+    
     // --- Banco onde estão o rapaz e a moça ---
 const bancoEncontro = new THREE.Mesh(
   new THREE.BoxGeometry(4, 0.5, 1.2),
