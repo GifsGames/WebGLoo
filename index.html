@@ -237,7 +237,8 @@ if (car1.position.x < -10) { // voltou para o início
     // Loop de animação
     function animate() {
       requestAnimationFrame(animate);
-
+      car1.position.x += 0.02;
+      if (car1.position.x > 6) car1.position.x = -6;
      
       car2.position.x -= 0.015;
       if (car2.position.x < -6) car2.position.x = 6;
