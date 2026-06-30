@@ -165,7 +165,7 @@
       }
     }
 
-    // Segunda região
+       // --- Segunda região ---
     const street2 = new THREE.Mesh(
       new THREE.PlaneGeometry(40, 20),
       new THREE.MeshStandardMaterial({ color: 0x333333, side: THREE.DoubleSide })
@@ -174,40 +174,33 @@
     street2.position.set(50, 0, 0);
     scene.add(street2);
 
-    const bakery2 = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color: 0xffcc66 }));
+    const bakery2 = new THREE.Mesh(
+      new THREE.BoxGeometry(6, 3, 4),
+      new THREE.MeshStandardMaterial({ color: 0xffcc66 })
+    );
     bakery2.position.set(45, 1.5, -12);
     scene.add(bakery2);
 
-    const tireShop2 = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color
-// Padaria duplicada
-const bakery2 = new THREE.Mesh(
-  new THREE.BoxGeometry(6, 3, 4),
-  new THREE.MeshStandardMaterial({ color: 0xffcc66 })
-);
-bakery2.position.set(45, 1.5, -12);
-scene.add(bakery2);
+    const tireShop2 = new THREE.Mesh(
+      new THREE.BoxGeometry(6, 3, 4),
+      new THREE.MeshStandardMaterial({ color: 0x999999 })
+    );
+    tireShop2.position.set(55, 1.5, -13);
+    scene.add(tireShop2);
 
-// Borracharia duplicada
-const tireShop2 = new THREE.Mesh(
-  new THREE.BoxGeometry(6, 3, 4),
-  new THREE.MeshStandardMaterial({ color: 0x999999 })
-);
-tireShop2.position.set(55, 1.5, -13);
-scene.add(tireShop2);
+    // Árvores e postes duplicados
+    createTree(42, -6);
+    createTree(58, -6);
+    createLamp(44, -2);
+    createLamp(54, 2);
 
-// Árvores e postes duplicados
-createTree(42, -6);
-createTree(58, -6);
-createLamp(44, -2);
-createLamp(54, 2);
-
-// --- Ponte entre as duas regiões ---
-const bridge = new THREE.Mesh(
-  new THREE.BoxGeometry(10, 0.5, 4),
-  new THREE.MeshStandardMaterial({ color: 0x8B4513 })
-);
-bridge.position.set(25, 0, 0); // bem no meio
-scene.add(bridge);
+    // --- Ponte entre as duas regiões ---
+    const bridge = new THREE.Mesh(
+      new THREE.BoxGeometry(10, 0.5, 4),
+      new THREE.MeshStandardMaterial({ color: 0x8B4513 })
+    );
+    bridge.position.set(25, 0, 0);
+    scene.add(bridge);
 
     // Loop de animação
     function animate() {
@@ -228,23 +221,24 @@ scene.add(bridge);
       renderer.render(scene, camera);
     }
     animate();
- // --- Controles do rapaz (WASD) e da moça (setas) ---
-window.addEventListener("keydown", (event) => {
-  const key = event.key.toLowerCase();
 
-  // Rapaz (WASD)
-  if (key === "w") boy.position.z -= 0.2;
-  if (key === "s") boy.position.z += 0.2;
-  if (key === "a") boy.position.x -= 0.2;
-  if (key === "d") boy.position.x += 0.2;
+    // --- Controles do rapaz (WASD) e da moça (setas) ---
+    window.addEventListener("keydown", (event) => {
+      const key = event.key.toLowerCase();
 
-  // Moça (setas)
-  if (event.key === "ArrowUp") girl.position.z -= 0.2;
-  if (event.key === "ArrowDown") girl.position.z += 0.2;
-  if (event.key === "ArrowLeft") girl.position.x -= 0.2;
-  if (event.key === "ArrowRight") girl.position.x += 0.2;
-});
+      // Rapaz (WASD)
+      if (key === "w") boy.position.z -= 0.2;
+      if (key === "s") boy.position.z += 0.2;
+      if (key === "a") boy.position.x -= 0.2;
+      if (key === "d") boy.position.x += 0.2;
 
+      // Moça (setas)
+      if (event.key === "ArrowUp") girl.position.z -= 0.2;
+      if (event.key === "ArrowDown") girl.position.z += 0.2;
+      if (event.key === "ArrowLeft") girl.position.x -= 0.2;
+      if (event.key === "ArrowRight") girl.position.x += 0.2;
+    });
   </script>
-  </body>
+</body>
 </html>
+
