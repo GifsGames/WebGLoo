@@ -70,11 +70,12 @@
     const loader = new THREE.TextureLoader();
 
     // Rapaz (Sprite nítido)
-    const boyFace = loader.load("https://i.imgur.com/uatbeLt.png");
-    const boy = new THREE.Sprite(new THREE.SpriteMaterial({ map: boyFace }));
-    boy.scale.set(1.5, 1.5, 1);
-    boy.position.set(-6, 0.6, 0);
-    scene.add(boy);
+   const boyFace = loader.load("https://i.imgur.com/C2QhuQh.png");
+const boy = new THREE.Sprite(new THREE.SpriteMaterial({ map: boyFace }));
+boy.scale.set(1.5, 1.5, 1);
+boy.position.set(-6, 0.6, 0);
+scene.add(boy);
+
 
     // Moça (Sprite nítido)sssssssssssss
     const girlFace = loader.load("https://i.imgur.com/6WmxRxk.png");
