@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -181,6 +179,22 @@ scene.add(fachadaBorracharia);
         document.getElementById("hud").innerText = hudText;
       }
     }
+    // Área original
+addGround({x:0, y:0, width:50, height:50});
+addBuilding("Padaria do Guto", {x:10, y:0});
+addBuilding("Borracharia do Denílson", {x:20, y:0});
+addTree({x:5, y:5});
+addLamp({x:15, y:5});
+
+// Nova área duplicada à direita
+addGround({x:70, y:0, width:50, height:50});
+addBuilding("Padaria do Guto", {x:80, y:0});
+addBuilding("Borracharia do Denílson", {x:90, y:0});
+addTree({x:75, y:5});
+addLamp({x:85, y:5});
+
+// Ponte entre as duas áreas
+addBridge({x:55, y:0, width:15, height:5});
 
     // Loop de animação
     function animate() {
