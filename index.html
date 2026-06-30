@@ -218,13 +218,27 @@ const bridge = new THREE.Mesh(
 bridge.position.set(25, 0, 0); // bem no meio
 scene.add(bridge);
 
+    // Configuração inicial
+car1.position.set(-10, 0.4, 0); // começa mais à esquerda
+car1.userData.speed = 0.05;
+car1.userData.direction = 1; // 1 = indo para direita, -1 = voltando
+
+// Dentro do animate()
+car1.position.x += car1.userData.speed * car1.userData.direction;
+
+// Limites: atravessa da esquerda até a direita
+if (car1.position.x > 55) { // chegou na segunda região
+  car1.userData.direction = -1; // volta para esquerda
+}
+if (car1.position.x < -10) { // voltou para o início
+  car1.userData.direction = 1; // vai para direita de novo
+}
+
     // Loop de animação
     function animate() {
       requestAnimationFrame(animate);
 
-      car1.position.x += 0.02;
-      if (car1.position.x > 6) car1.position.x = -6;
-
+     
       car2.position.x -= 0.015;
       if (car2.position.x < -6) car2.position.x = 6;
 
