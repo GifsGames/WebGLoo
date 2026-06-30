@@ -250,7 +250,7 @@ function animate() {
   car1.position.x += car1.userData.speed;
   if (car1.position.x > 55) {
     // chegou na segunda região → volta para o início
-    car1.position.x = 55;
+    car1.position.x = -1;
   }
 
   // Carros 2 e 3 continuam com lógica simples
