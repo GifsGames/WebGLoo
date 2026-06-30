@@ -209,6 +209,15 @@ const bancoEncontro = new THREE.Mesh(
 // Coloque o banco na posição próxima dos personagens
 bancoEncontro.position.set(0, 0.25, 0); 
 scene.add(bancoEncontro);
+    function checkConversation() {
+  const distBoy = Math.sqrt((boy.position.x - bancoEncontro.position.x)**2 + (boy.position.z - bancoEncontro.position.z)**2);
+  const distGirl = Math.sqrt((girl.position.x - bancoEncontro.position.x)**2 + (girl.position.z - bancoEncontro.position.z)**2);
+  if (distBoy < 1 && distGirl < 1) {
+    hudText = "🧑🏻 Rapaz: Esse banco é perfeito pra conversar!\n👩🏻 Moça: Sim, ainda mais em frente à prefeitura!\n🏛️ Prefeitura: O coração da cidade está aqui!";
+    document.getElementById("hud").innerText = hudText;
+  }
+}
+
 
     // Loop de animação
     function animate() {
