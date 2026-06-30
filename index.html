@@ -179,6 +179,44 @@ scene.add(fachadaBorracharia);
         document.getElementById("hud").innerText = hudText;
       }
     }
+    // --- Segunda região duplicada ---
+const street2 = new THREE.Mesh(
+  new THREE.PlaneGeometry(40, 20),
+  new THREE.MeshStandardMaterial({ color: 0x333333, side: THREE.DoubleSide })
+);
+street2.rotation.x = Math.PI / 2;
+street2.position.set(50, 0, 0); // desloca para a direita
+scene.add(street2);
+
+// Padaria duplicada
+const bakery2 = new THREE.Mesh(
+  new THREE.BoxGeometry(6, 3, 4),
+  new THREE.MeshStandardMaterial({ color: 0xffcc66 })
+);
+bakery2.position.set(45, 1.5, -12);
+scene.add(bakery2);
+
+// Borracharia duplicada
+const tireShop2 = new THREE.Mesh(
+  new THREE.BoxGeometry(6, 3, 4),
+  new THREE.MeshStandardMaterial({ color: 0x999999 })
+);
+tireShop2.position.set(55, 1.5, -13);
+scene.add(tireShop2);
+
+// Árvores e postes duplicados
+createTree(42, -6);
+createTree(58, -6);
+createLamp(44, -2);
+createLamp(54, 2);
+
+// --- Ponte entre as duas regiões ---
+const bridge = new THREE.Mesh(
+  new THREE.BoxGeometry(10, 0.5, 4),
+  new THREE.MeshStandardMaterial({ color: 0x8B4513 })
+);
+bridge.position.set(25, 0.25, -10); // bem no meio
+scene.add(bridge);
 
     // Loop de animação
     function animate() {
