@@ -252,15 +252,17 @@ scene.add(bridge);
       renderer.render(scene, camera);
     }
     animate();
-  // --- Controles do rapaz (WASD) e da moça (setas) ---
+ // --- Controles do rapaz (WASD) e da moça (setas) ---
 window.addEventListener("keydown", (event) => {
-  // Rapaz (usa WASD)
-  if (event.key.toLowerCase() === "w") boy.position.z -= 0.2;
-  if (event.key.toLowerCase() === "s") boy.position.z += 0.2;
-  if (event.key.toLowerCase() === "a") boy.position.x -= 0.2;
-  if (event.key.toLowerCase() === "d") boy.position.x += 0.2;
+  const key = event.key.toLowerCase();
 
-  // Moça (usa setas)
+  // Rapaz (WASD)
+  if (key === "w") boy.position.z -= 0.2;
+  if (key === "s") boy.position.z += 0.2;
+  if (key === "a") boy.position.x -= 0.2;
+  if (key === "d") boy.position.x += 0.2;
+
+  // Moça (setas)
   if (event.key === "ArrowUp") girl.position.z -= 0.2;
   if (event.key === "ArrowDown") girl.position.z += 0.2;
   if (event.key === "ArrowLeft") girl.position.x -= 0.2;
