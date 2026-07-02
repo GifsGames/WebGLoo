@@ -102,7 +102,7 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
 
     // Prefeitura ao lado da padaria
     const prefeitura = new THREE.Mesh(new THREE.BoxGeometry(8, 4, 5), new THREE.MeshStandardMaterial({ color: 0x336699 }));
-    prefeitura.position.set(12, 2, -12); // deslocada para a direita
+    prefeitura.position.set(06, 2, -12); // deslocada para a direita
     scene.add(prefeitura);
 
     const fachadaPrefeitura = new THREE.Mesh(new THREE.PlaneGeometry(8, 4), new THREE.MeshStandardMaterial({ map: loader.load("./assets/prefeitura.png") }));
