@@ -68,37 +68,21 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     girl.position.set(6, 0.6, 0);
     scene.add(girl);
 
-    // Padaria e Borracharia
+    // Padaria
     const bakery = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color: 0xffcc66 }));
     bakery.position.set(0, 1.5, -12.0);
     scene.add(bakery);
-    const fachada = new THREE.Mesh(new THREE.PlaneGeometry(6, 3), new THREE.MeshStandardMaterial({ map: loader.load("./assets/bakery.png") }));
-    fachada.position.set(0, 1.5, -10);
-    scene.add(fachada);
+    const fachadaBakery = new THREE.Mesh(new THREE.PlaneGeometry(6, 3), new THREE.MeshStandardMaterial({ map: loader.load("./assets/bakery.png") }));
+    fachadaBakery.position.set(0, 1.5, -10);
+    scene.add(fachadaBakery);
 
+    // Borracharia
     const tireShop = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color: 0x999999 }));
     tireShop.position.set(6, 1.5, -13.0);
     scene.add(tireShop);
-    const fachadaBorracharia = new THREE.Mesh(new THREE.PlaneGeometry(6, 3), new THREE.MeshStandardMaterial({ map: loader.load("./assets/tire.png") }));
-    fachadaBorracharia.position.set(6, 1.5, -10.2);
-    scene.add(fachadaBorracharia);
-
-    // Clientes
-    const cust1 = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 16), new THREE.MeshStandardMaterial({ color: 0xffff00 }));
-    cust1.position.set(-5, 0.2, -12);
-    scene.add(cust1);
-    const cust2 = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 16), new THREE.MeshStandardMaterial({ color: 0x00ff00 }));
-    cust2.position.set(5, 0.2, -12);
-    scene.add(cust2);
-
-    const clienteHead = new THREE.Sprite(new THREE.SpriteMaterial({ map: loader.load("./assets/customer.png") }));
-    clienteHead.scale.set(1, 1, 1);
-    scene.add(clienteHead);
-
-    // Ponte
-    const bridge = new THREE.Mesh(new THREE.BoxGeometry(10, 0.5, 4), new THREE.MeshStandardMaterial({ color: 0x8B4513 }));
-    bridge.position.set(25, 0, 0);
-    scene.add(bridge);
+    const fachadaTire = new THREE.Mesh(new THREE.PlaneGeometry(6, 3), new THREE.MeshStandardMaterial({ map: loader.load("./assets/tire.png") }));
+    fachadaTire.position.set(6, 1.5, -10.2);
+    scene.add(fachadaTire);
 
     // Prefeitura ao lado da padaria
     const prefeitura = new THREE.Mesh(new THREE.BoxGeometry(8, 4, 5), new THREE.MeshStandardMaterial({ color: 0x336699 }));
