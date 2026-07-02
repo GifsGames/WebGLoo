@@ -170,6 +170,13 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
       clienteHead.position.set(cust1.position.x, cust1.position.y + 0.5, cust1.position.z);
       clienteHead.rotation.z += 0.05;
     }
+
+    // Conversa no banco
+    function checkConversation() {
+      const distBoy = Math.sqrt((boy.position.x - bancoEncontro.position.x)**2 + (boy.position.z - bancoEncontro.position.z)**2);
+      const distGirl = Math.sqrt((girl.position.x - bancoEncontro.position.x)**2 + (girl.position.z - bancoEncontro.position.z)**2);
+      if (distBoy < 1 && distGirl < 1) {
+        hudText = "🧑🏻 
     // Conversa no banco
     function checkConversation() {
       const distBoy = Math.sqrt(
@@ -189,7 +196,7 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
       }
     }
 
-    // Loop de animação
+   // Loop de animação
     function animate() {
       requestAnimationFrame(animate);
 
@@ -215,15 +222,15 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     window.addEventListener("keydown", (event) => {
       const key = event.key.toLowerCase();
 
-      // Rapaz (WASD)
-      if (key === "w") boy.position.z -= 0.2;
-      if (key === "s") boy.position.z += 0.2;
+      // Rapaz (WASD) — corrigido para que W vá para trás
+      if (key === "w") boy.position.z += 0.2;
+      if (key === "s") boy.position.z -= 0.2;
       if (key === "a") boy.position.x -= 0.2;
       if (key === "d") boy.position.x += 0.2;
 
-      // Moça (setas)
-      if (event.key === "ArrowUp") girl.position.z -= 0.2;
-      if (event.key === "ArrowDown") girl.position.z += 0.2;
+      // Moça (setas) — corrigido para que ↑ vá para trás
+      if (event.key === "ArrowUp") girl.position.z += 0.2;
+      if (event.key === "ArrowDown") girl.position.z -= 0.2;
       if (event.key === "ArrowLeft") girl.position.x -= 0.2;
       if (event.key === "ArrowRight") girl.position.x += 0.2;
     });
