@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>WebGloo</title>
+  <title>RadioLegendsHQ - Bairro Vivo</title>
   <style>
     body { margin: 0; overflow: hidden; background: #111; }
     canvas { display: block; }
@@ -17,10 +17,8 @@
   </style>
 </head>
 <body>
-  <div id="hud">🎮 WebGloo 
-Use WASD para mover o rapaz, setas para mover a moça!</div>
-
-  <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+  <div id="hud">🎮 RadioLegendsHQ - Beta\nUse WASD para mover o rapaz, setas para mover a moça!</div>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script>
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -28,53 +26,49 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    // Luzes
-    scene.add(new THREE.AmbientLight(0xffffff, 1.2));
-    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    dirLight.position.set(5, 10, 7.5);
-    scene.add(dirLight);
-
-    const loader = new THREE.TextureLoader();
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    scene.add(ambientLight);
 
     // Rua
     const street = new THREE.Mesh(
       new THREE.PlaneGeometry(40, 20),
       new THREE.MeshStandardMaterial({ color: 0x333333, side: THREE.DoubleSide })
     );
-    street.rotation.x = -Math.PI / 2;
+    street.rotation.x = Math.PI / 2;
     scene.add(street);
 
-    // Banco
+    // Banco único
     const bench = new THREE.Mesh(
       new THREE.BoxGeometry(4, 0.5, 1.2),
       new THREE.MeshStandardMaterial({ color: 0x996633 })
     );
-    bench.position.set(0, 0.25, -9);
+    bench.position.set(0, 0.25, -2);
     scene.add(bench);
 
     // Carros
-    function createCar(textureURL, x, z) {
-      const carTexture = loader.load(textureURL);
+    function createCar(color, x, z) {
       const car = new THREE.Mesh(
-        new THREE.BoxGeometry(4, 2, 0.1),
-        new THREE.MeshStandardMaterial({ map: carTexture })
+        new THREE.BoxGeometry(2, 0.8, 1),
+        new THREE.MeshStandardMaterial({ color })
       );
       car.position.set(x, 0.4, z);
       scene.add(car);
       return car;
     }
-    const car1 = createCar("https://i.imgur.com/ZffpE3q.png", -5, 2);
-    const car2 = createCar("https://i.imgur.com/cmhonW3.png", 5, -2);
-    const car3 = createCar("https://i.imgur.com/ZffpE3q.png", -2, -4);
+    const car1 = createCar(0xff0000, -5, 2);
+    const car2 = createCar(0x0000ff, 5, -2);
+    const car3 = createCar(0x00ffff, -2, -4);
 
-    // Rapaz
+    const loader = new THREE.TextureLoader();
+
+    // Rapaz com rosto 🧑🏻 (Sprite para ficar nítido)
     const boyFace = loader.load("https://i.imgur.com/C2QhuQh.png");
     const boy = new THREE.Sprite(new THREE.SpriteMaterial({ map: boyFace }));
     boy.scale.set(1.5, 1.5, 1);
     boy.position.set(-6, 0.6, 0);
     scene.add(boy);
 
-    // Moça
+    // Moça com rosto 👩🏻 (Sprite para ficar nítido)
     const girlFace = loader.load("https://i.imgur.com/6WmxRxk.png");
     const girl = new THREE.Sprite(new THREE.SpriteMaterial({ map: girlFace }));
     girl.scale.set(1.5, 1.5, 1);
@@ -83,29 +77,21 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
 
     // Padaria
     const bakery = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color: 0xffcc66 }));
-    bakery.position.set(0, 1.5, -12.0);
+    bakery.position.set(-4, 1.5, -10);
     scene.add(bakery);
 
-    const fachadaTexture = loader.load("https://i.imgur.com/ywvsTHj.png");
-    const fachada = new THREE.Mesh(
-      new THREE.PlaneGeometry(6, 3),
-      new THREE.MeshStandardMaterial({ map: fachadaTexture })
-    );
-    fachada.position.set(0, 1.5, -10);
-    scene.add(fachada);
+    const signBakery = new THREE.Mesh(new THREE.BoxGeometry(4, 0.5, 0.2), new THREE.MeshStandardMaterial({ color: 0x663300 }));
+    signBakery.position.set(-4, 3.5, -10);
+    scene.add(signBakery);
 
     // Borracharia
     const tireShop = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color: 0x999999 }));
-    tireShop.position.set(6, 1.5, -13.0);
+    tireShop.position.set(4, 1.5, -10);
     scene.add(tireShop);
 
-    const fachadaBorrachariaTexture = loader.load("https://i.imgur.com/ZQMzpcJ.png");
-    const fachadaBorracharia = new THREE.Mesh(
-      new THREE.PlaneGeometry(6, 3),
-      new THREE.MeshStandardMaterial({ map: fachadaBorrachariaTexture })
-    );
-    fachadaBorracharia.position.set(6, 1.5, -10.2);
-    scene.add(fachadaBorracharia);
+    const signTire = new THREE.Mesh(new THREE.BoxGeometry(4, 0.5, 0.2), new THREE.MeshStandardMaterial({ color: 0x222222 }));
+    signTire.position.set(4, 3.5, -10);
+    scene.add(signTire);
 
     // Clientes
     function createCustomer(x, z, color) {
@@ -117,13 +103,7 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     const cust1 = createCustomer(-5, -12, 0xffff00);
     const cust2 = createCustomer(5, -12, 0x00ff00);
 
-    // Cliente amarelo com cabeça
-    const clienteFace = loader.load("https://i.imgur.com/bZ4xOsL.png");
-    const clienteHead = new THREE.Sprite(new THREE.SpriteMaterial({ map: clienteFace }));
-    clienteHead.scale.set(1, 1, 1);
-    scene.add(clienteHead);
-
-    // Postes
+    // Postes de luz
     function createLamp(x, z) {
       const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 4), new THREE.MeshStandardMaterial({ color: 0x888888 }));
       pole.position.set(x, 2, z);
@@ -147,19 +127,24 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     createTree(-10, -6);
     createTree(10, -6);
 
-    // Ponte
-    const bridge = new THREE.Mesh(new THREE.BoxGeometry(11, 0.1, 4), new THREE.MeshStandardMaterial({ color: 0x8B4513 }));
-    bridge.position.set(25, 0, 0);
-    scene.add(bridge);
+    camera.position.set(0, 8, 16);
+    camera.lookAt(0, 0, 0);
 
-    // Banco de encontro
-    const bancoEncontro = new THREE.Mesh(new THREE.BoxGeometry(4, 0.5, 1.2), new THREE.MeshStandardMaterial({ color: 0x996633 }));
-    bancoEncontro.position.set(0, 0.25, 0);
-    scene.add(bancoEncontro);
-
-    // HUD
-    let hudText = "🎮 WebGloo \nUse WASD para mover o rapaz, setas para mover a moça!";
+    let hudText = "🎮 RadioLegendsHQ - Beta\nUse WASD para mover o rapaz, setas para mover a moça!";
     document.getElementById("hud").innerText = hudText;
+
+    // Controles
+    window.addEventListener("keydown", (event) => {
+      if(event.key === "w") boy.position.z -= 0.2;
+      if(event.key === "s") boy.position.z += 0.2;
+      if(event.key === "a") boy.position.x -= 0.2;
+      if(event.key === "d") boy.position.x += 0.2;
+
+      if(event.key === "ArrowUp") girl.position.z -= 0.2;
+      if(event.key === "ArrowDown") girl.position.z += 0.2;
+      if(event.key === "ArrowLeft") girl.position.x -= 0.2;
+      if(event.key === "ArrowRight") girl.position.x += 0.2;
+    });
 
     // Movimento dos clientes
     function moveCustomers() {
@@ -167,28 +152,17 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
       if (cust1.position.z > -8) cust1.position.z = -12;
       cust2.position.z += 0.015;
       if (cust2.position.z > -8) cust2.position.z = -12;
-      clienteHead.position.set(cust1.position.x, cust1.position.y + 0.5, cust1.position.z);
-      clienteHead.rotation.z += 0.05;
     }
 
-          // Conversa no banco
+    // Conversa no banco
     function checkConversation() {
-      const distBoy = Math.sqrt(
-        (boy.position.x - bancoEncontro.position.x) ** 2 +
-        (boy.position.z - bancoEncontro.position.z) ** 2
-      );
-      const distGirl = Math.sqrt(
-        (girl.position.x - bancoEncontro.position.x) ** 2 +
-        (girl.position.z - bancoEncontro.position.z) ** 2
-      );
+      const distBoy = Math.sqrt((boy.position.x - bench.position.x)**2 + (boy.position.z - bench.position.z)**2);
+      const distGirl = Math.sqrt((girl.position.x - bench.position.x)**2 + (girl.position.z - bench.position.z)**2);
       if (distBoy < 1 && distGirl < 1) {
-        hudText = "🧑🏻 Rapaz: Esse banco é perfeito pra conversar!\n" +
-                  "👩🏻 Moça: Sim, vamos até a prefeitura!\n" +
-                  "🏛️ Prefeitura: O coração da cidade está aqui!";
+        hudText = "👫 Rapaz: Que bom te ver!\n👩 Moça: Vamos sentar juntos no banco!\n🍞 A padaria está cheia de gente!\n🛞 Ao lado: A borracharia está aberta!";
         document.getElementById("hud").innerText = hudText;
       }
     }
-
     // Loop de animação
     function animate() {
       requestAnimationFrame(animate);
