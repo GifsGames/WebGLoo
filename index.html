@@ -13,8 +13,9 @@
       color: white;
       font-family: Arial, sans-serif;
       white-space: pre-line;
+      z-index: 5;
     }
-    /* Tela de entrada estilo cinema */
+    /* Tela de entrada */
     #intro {
       position: fixed;
       top: 0; left: 0;
@@ -28,13 +29,14 @@
       font-family: 'Arial Black', sans-serif;
       font-size: 2em;
       z-index: 10;
-      animation: fadeOut 4s forwards;
-      animation-delay: 3s;
     }
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
+    #intro button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
     }
-    /* Tela de saída estilo créditos */
+    /* Tela de saída */
     #outro {
       position: fixed;
       top: 0; left: 0;
@@ -52,13 +54,26 @@
   </style>
 </head>
 <body>
-  <div id="intro">🎬 Bem-vindo ao WebGloo<br>Prepare-se para a aventura!</div>
+  <div id="intro">
+    🎬 Bem-vindo ao WebGloo<br>
+    <small>Uma aventura começa agora...</small><br>
+    <button onclick="startGame()">Entrar no Jogo</button>
+  </div>
+
   <div id="hud">🎮 WebGloo 
 Use WASD para mover o rapaz, setas para mover a moça!</div>
+
   <div id="outro">🎬 Fim da Jornada<br>Obrigado por jogar!</div>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script>
+    let gameStarted = false;
+
+    function startGame() {
+      document.getElementById("intro").style.display = "none";
+      gameStarted = true;
+    }
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
@@ -103,13 +118,17 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     // Loop de animação
     function animate() {
       requestAnimationFrame(animate);
-      renderer.render(scene, camera);
+      if (gameStarted) {
+        renderer.render(scene, camera);
+      }
     }
     animate();
 
-    // Controles do rapaz (WASD) e da moça (setas)
+    // Controles
     window.addEventListener("keydown", (event) => {
+      if (!gameStarted) return;
       const key = event.key.toLowerCase();
+
       if (key === "w") camera.position.z -= 0.2;
       if (key === "s") camera.position.z += 0.2;
       if (key === "a") camera.position.x -= 0.2;
