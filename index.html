@@ -284,7 +284,7 @@ function moveCustomers() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meu Hipermercado</title>
   <style>
- .predio {
+.predio {
   position: relative;
   display: inline-block;
 }
@@ -295,12 +295,11 @@ function moveCustomers() {
 
 .fachada {
   position: absolute;
-  top: 50px;          /* sobe ou desce */
-  left: 50%;          /* centraliza */
+  top: 80px;          /* diminua para subir, aumente para descer */
+  left: 50%;          /* centraliza horizontalmente */
   transform: translateX(-50%);
-  width: 300px;       /* aumenta o tamanho */
-  z-index: 999;       /* garante que fique na frente */
-  border: 2px solid red; /* borda só pra você ver onde está */
+  width: 250px;
+  z-index: 10;        /* força a fachada a aparecer na frente */
 }
 
     body {
