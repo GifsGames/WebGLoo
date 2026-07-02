@@ -295,12 +295,13 @@ function moveCustomers() {
 
 .fachada {
   position: absolute;
-  top: 80px;    /* diminua para subir, aumente para descer */
-  left: 50%;    /* centraliza horizontalmente */
-  transform: translateX(-50%); /* garante que fique no meio */
+  top: 80px;          /* controla a altura: diminua para subir, aumente para descer */
+  left: 50%;          /* centraliza horizontalmente */
+  transform: translateX(-50%);
   width: 250px;
-  z-index: 10;  /* força a fachada a ficar na frente */
+  z-index: 10;        /* garante que fique na frente do prédio */
 }
+
     body {
       background-color: #000;
       font-family: Arial, sans-serif;
