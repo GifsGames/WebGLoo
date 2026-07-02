@@ -107,8 +107,8 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     scene.add(bridge);
 
     // Prefeitura
-    const prefeitura = new THREE.Mesh(new THREE.BoxGeometry(4, 4, 5), new THREE.MeshStandardMaterial({ color: 0x336699 }));
-    prefeitura.position.set(12, 2, -12);
+    const prefeitura = new THREE.Mesh(new THREE.BoxGeometry(8, 4, 5), new THREE.MeshStandardMaterial({ color: 0x336699 }));
+    prefeitura.position.set(9, 2, -9);
     scene.add(prefeitura);
 
     const fachadaPrefeitura = new THREE.Mesh(new THREE.PlaneGeometry(8, 4), new THREE.MeshStandardMaterial({ map: loader.load("https://i.imgur.com/o8zeC3r.png") }));
