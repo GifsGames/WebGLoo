@@ -257,28 +257,7 @@ function moveCustomers() {
       renderer.render(scene, camera);
     }
     animate();
-
-    // --- Controles do rapaz (WASD) e da moça (setas) ---
-    window.addEventListener("keydown", (event) => {
-      const key = event.key.toLowerCase();
-
-      // Rapaz (WASD)
-      if (key === "w") boy.position.z -= 0.2;
-      if (key === "s") boy.position.z += 0.2;
-      if (key === "a") boy.position.x -= 0.2;
-      if (key === "d") boy.position.x += 0.2;
-
-      // Moça (setas)
-      if (event.key === "ArrowUp") girl.position.z -= 0.2;
-      if (event.key === "ArrowDown") girl.position.z += 0.2;
-      if (event.key === "ArrowLeft") girl.position.x -= 0.2;
-      if (event.key === "ArrowRight") girl.position.x += 0.2;
-    });
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt-BR">
+    <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -383,6 +362,23 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
       renderer.render(scene, camera);
     }
     animate();
+
+    // --- Controles do rapaz (WASD) e da moça (setas) ---
+    window.addEventListener("keydown", (event) => {
+      const key = event.key.toLowerCase();
+
+      // Rapaz (WASD)
+      if (key === "w") boy.position.z -= 0.2;
+      if (key === "s") boy.position.z += 0.2;
+      if (key === "a") boy.position.x -= 0.2;
+      if (key === "d") boy.position.x += 0.2;
+
+      // Moça (setas)
+      if (event.key === "ArrowUp") girl.position.z -= 0.2;
+      if (event.key === "ArrowDown") girl.position.z += 0.2;
+      if (event.key === "ArrowLeft") girl.position.x -= 0.2;
+      if (event.key === "ArrowRight") girl.position.x += 0.2;
+    });
   </script>
 </body>
 </html>
