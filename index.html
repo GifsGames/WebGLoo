@@ -171,56 +171,63 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
       clienteHead.rotation.z += 0.05;
     }
 
-    // Conversa no banco
+        // Conversa no banco
     function checkConversation() {
-      const distBoy = Math.sqrt((boy.position.x - bancoEncontro.position.x)**2 + (boy.position.z - bancoEncontro.position.z)**2);
-      const distGirl = Math.sqrt((girl.position.x - bancoEncontro.position.x)**2 + (girl.position.z - bancoEncontro.position.z)**2);
+      const distBoy = Math.sqrt(
+        (boy.position.x - bancoEncontro.position.x) ** 2 +
+        (boy.position.z - bancoEncontro.position.z) ** 2
+      );
+      const distGirl = Math.sqrt(
+        (girl.position.x - bancoEncontro.position.x) ** 2 +
+        (girl.position.z - bancoEncontro.position.z) ** 2
+      );
+
       if (distBoy < 1 && distGirl < 1) {
         hudText = "🧑🏻 Rapaz: Esse banco é perfeito pra conversar!\n" +
-              "👩🏻 Moça: Sim, vamos até a prefeitura!\n" +
-              "🏛️ Prefeitura: O coração da cidade está aqui!";
-    document.getElementById("hud").innerText = hudText;
-  }
-}
+                  "👩🏻 Moça: Sim, vamos até a prefeitura!\n" +
+                  "🏛️ Prefeitura: O coração da cidade está aqui!";
+        document.getElementById("hud").innerText = hudText;
+      }
+    }
 
-// Loop de animação
-function animate() {
-  requestAnimationFrame(animate);
+    // Loop de animação
+    function animate() {
+      requestAnimationFrame(animate);
 
-  // movimento dos carros
-  car1.position.x += 0.02;
-  if (car1.position.x > 20) car1.position.x = -10;
+      // movimento dos carros
+      car1.position.x += 0.02;
+      if (car1.position.x > 20) car1.position.x = -10;
 
-  car2.position.x -= 0.015;
-  if (car2.position.x < -6) car2.position.x = 6;
+      car2.position.x -= 0.015;
+      if (car2.position.x < -6) car2.position.x = 6;
 
-  car3.position.x += 0.01;
-  if (car3.position.x > 6) car3.position.x = -6;
+      car3.position.x += 0.01;
+      if (car3.position.x > 6) car3.position.x = -6;
 
-  // clientes e conversa
-  moveCustomers();
-  checkConversation();
+      // clientes e conversa
+      moveCustomers();
+      checkConversation();
 
-  renderer.render(scene, camera);
-}
-animate();
+      renderer.render(scene, camera);
+    }
+    animate();
 
-// Controles do rapaz (WASD) e da moça (setas)
-window.addEventListener("keydown", (event) => {
-  const key = event.key.toLowerCase();
+    // Controles do rapaz (WASD) e da moça (setas)
+    window.addEventListener("keydown", (event) => {
+      const key = event.key.toLowerCase();
 
-  // Rapaz (WASD)
-  if (key === "w") boy.position.z -= 0.2;
-  if (key === "s") boy.position.z += 0.2;
-  if (key === "a") boy.position.x -= 0.2;
-  if (key === "d") boy.position.x += 0.2;
+      // Rapaz (WASD)
+      if (key === "w") boy.position.z -= 0.2;
+      if (key === "s") boy.position.z += 0.2;
+      if (key === "a") boy.position.x -= 0.2;
+      if (key === "d") boy.position.x += 0.2;
 
-  // Moça (setas)
-  if (event.key === "ArrowUp") girl.position.z -= 0.2;
-  if (event.key === "ArrowDown") girl.position.z += 0.2;
-  if (event.key === "ArrowLeft") girl.position.x -= 0.2;
-  if (event.key === "ArrowRight") girl.position.x += 0.2;
-});
+      // Moça (setas)
+      if (event.key === "ArrowUp") girl.position.z -= 0.2;
+      if (event.key === "ArrowDown") girl.position.z += 0.2;
+      if (event.key === "ArrowLeft") girl.position.x -= 0.2;
+      if (event.key === "ArrowRight") girl.position.x += 0.2;
+    });
   </script>
 </body>
 </html>
