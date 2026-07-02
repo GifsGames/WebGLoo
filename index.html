@@ -295,11 +295,12 @@ function moveCustomers() {
 
 .fachada {
   position: absolute;
-  top: 80px;          /* controla a altura: diminua para subir, aumente para descer */
-  left: 50%;          /* centraliza horizontalmente */
+  top: 50px;          /* sobe ou desce */
+  left: 50%;          /* centraliza */
   transform: translateX(-50%);
-  width: 250px;
-  z-index: 10;        /* garante que fique na frente do prédio */
+  width: 300px;       /* aumenta o tamanho */
+  z-index: 999;       /* garante que fique na frente */
+  border: 2px solid red; /* borda só pra você ver onde está */
 }
 
     body {
