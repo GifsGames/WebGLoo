@@ -114,7 +114,10 @@ const fachadaPrefeitura = new THREE.Mesh(
 );
 fachadaPrefeitura.position.set(12, 2, -10.2); // mesma posição X
 scene.add(fachadaPrefeitura);
-
+    
+    // Prefeitura ao lado esquerdo da padaria
+prefeitura.position.set(-12, 2, -12);
+fachadaPrefeitura.position.set(-12, 2, -10.2);
 
     // HUD
     let hudText = "🎮 WebGloo \nUse WASD para mover o rapaz, setas para mover a moça!";
