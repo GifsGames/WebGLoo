@@ -17,7 +17,9 @@
   </style>
 </head>
 <body>
-  <div id="hud">🎮 WebGloo \nUse WASD para mover o rapaz, setas para mover a moça!</div>
+  <div id="hud">🎮 WebGloo 
+Use WASD para mover o rapaz, setas para mover a moça!</div>
+
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script>
     const scene = new THREE.Scene();
@@ -26,123 +28,91 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    // Luz
     scene.add(new THREE.AmbientLight(0xffffff, 1.2));
     const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
     dirLight.position.set(5, 10, 7.5);
     scene.add(dirLight);
 
-    // Rua
-    const street = new THREE.Mesh(
-      new THREE.PlaneGeometry(40, 20),
-      new THREE.MeshStandardMaterial({ color: 0x333333, side: THREE.DoubleSide })
-    );
-    street.rotation.x = Math.PI / 2;
+    const loader = new THREE.TextureLoader();
+
+    // Rua principal
+    const street = new THREE.Mesh(new THREE.PlaneGeometry(40, 20), new THREE.MeshStandardMaterial({ color: 0x333333, side: THREE.DoubleSide }));
+    street.rotation.x = -Math.PI / 2;
     scene.add(street);
 
     // Banco
-    const bench = new THREE.Mesh(
-      new THREE.BoxGeometry(4, 0.5, 1.2),
-      new THREE.MeshStandardMaterial({ color: 0x996633 })
-    );
+    const bench = new THREE.Mesh(new THREE.BoxGeometry(4, 0.5, 1.2), new THREE.MeshStandardMaterial({ color: 0x996633 }));
     bench.position.set(0, 0.25, -9);
     scene.add(bench);
 
     // Carros
     function createCar(textureURL, x, z) {
-      const loader = new THREE.TextureLoader();
       const carTexture = loader.load(textureURL);
-      const car = new THREE.Mesh(
-        new THREE.BoxGeometry(4, 2, 0.1),
-        new THREE.MeshStandardMaterial({ map: carTexture })
-      );
+      const car = new THREE.Mesh(new THREE.BoxGeometry(4, 2, 0.1), new THREE.MeshStandardMaterial({ map: carTexture }));
       car.position.set(x, 0.4, z);
       scene.add(car);
       return car;
     }
-    const car1 = createCar("https://i.imgur.com/ZffpE3q.png", -5, 2);
-    const car2 = createCar("https://i.imgur.com/cmhonW3.png", 5, -2);
-    const car3 = createCar("https://i.imgur.com/ZffpE3q.png", -2, -4);
+    const car1 = createCar("./assets/car1.png", -5, 2);
+    const car2 = createCar("./assets/car2.png", 5, -2);
+    const car3 = createCar("./assets/car1.png", -2, -4);
 
-    const loader = new THREE.TextureLoader();
-
-    // Rapaz
-    const boyFace = loader.load("https://i.imgur.com/C2QhuQh.png");
-    const boy = new THREE.Sprite(new THREE.SpriteMaterial({ map: boyFace }));
+    // Rapaz e Moça
+    const boy = new THREE.Sprite(new THREE.SpriteMaterial({ map: loader.load("./assets/boy.png") }));
     boy.scale.set(1.5, 1.5, 1);
     boy.position.set(-6, 0.6, 0);
     scene.add(boy);
 
-    // Moça
-    const girlFace = loader.load("https://i.imgur.com/6WmxRxk.png");
-    const girl = new THREE.Sprite(new THREE.SpriteMaterial({ map: girlFace }));
+    const girl = new THREE.Sprite(new THREE.SpriteMaterial({ map: loader.load("./assets/girl.png") }));
     girl.scale.set(1.5, 1.5, 1);
     girl.position.set(6, 0.6, 0);
     scene.add(girl);
 
-    // Padaria
+    // Padaria e Borracharia
     const bakery = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color: 0xffcc66 }));
     bakery.position.set(0, 1.5, -12.0);
     scene.add(bakery);
-
-    const fachadaTexture = loader.load("https://i.imgur.com/ywvsTHj.png");
-    const fachada = new THREE.Mesh(
-      new THREE.PlaneGeometry(6, 3),
-      new THREE.MeshStandardMaterial({ map: fachadaTexture })
-    );
+    const fachada = new THREE.Mesh(new THREE.PlaneGeometry(6, 3), new THREE.MeshStandardMaterial({ map: loader.load("./assets/bakery.png") }));
     fachada.position.set(0, 1.5, -10);
     scene.add(fachada);
 
-    // Borracharia
     const tireShop = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 4), new THREE.MeshStandardMaterial({ color: 0x999999 }));
     tireShop.position.set(6, 1.5, -13.0);
     scene.add(tireShop);
-
-    const fachadaBorrachariaTexture = loader.load("https://i.imgur.com/ZQMzpcJ.png");
-    const fachadaBorracharia = new THREE.Mesh(
-      new THREE.PlaneGeometry(6, 3),
-      new THREE.MeshStandardMaterial({ map: fachadaBorrachariaTexture })
-    );
+    const fachadaBorracharia = new THREE.Mesh(new THREE.PlaneGeometry(6, 3), new THREE.MeshStandardMaterial({ map: loader.load("./assets/tire.png") }));
     fachadaBorracharia.position.set(6, 1.5, -10.2);
     scene.add(fachadaBorracharia);
 
     // Clientes
-    function createCustomer(x, z, color) {
-      const cust = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 16), new THREE.MeshStandardMaterial({ color }));
-      cust.position.set(x, 0.2, z);
-      scene.add(cust);
-      return cust;
-    }
-    const cust1 = createCustomer(-5, -12, 0xffff00);
-    const cust2 = createCustomer(5, -12, 0x00ff00);
+    const cust1 = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 16), new THREE.MeshStandardMaterial({ color: 0xffff00 }));
+    cust1.position.set(-5, 0.2, -12);
+    scene.add(cust1);
+    const cust2 = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 16), new THREE.MeshStandardMaterial({ color: 0x00ff00 }));
+    cust2.position.set(5, 0.2, -12);
+    scene.add(cust2);
 
-    // Postes
-    function createLamp(x, z) {
-      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 4), new THREE.MeshStandardMaterial({ color: 0x888888 }));
-      pole.position.set(x, 2, z);
-      scene.add(pole);
-      const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), new THREE.MeshStandardMaterial({ color: 0xffffaa, emissive: 0xffffaa }));
-      lamp.position.set(x, 4, z);
-      scene.add(lamp);
-    }
-    createLamp(-8, -2);
-    createLamp(8, 2);
+    const clienteHead = new THREE.Sprite(new THREE.SpriteMaterial({ map: loader.load("./assets/customer.png") }));
+    clienteHead.scale.set(1, 1, 1);
+    scene.add(clienteHead);
 
-    // Árvores
-    function createTree(x, z) {
-      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 1), new THREE.MeshStandardMaterial({ color: 0x663300 }));
-      trunk.position.set(x, 0.5, z);
-      scene.add(trunk);
-      const crown = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 16), new THREE.MeshStandardMaterial({ color: 0x228B22 }));
-      crown.position.set(x, 1.5, z);
-      scene.add(crown);
-    }
-    createTree(-10, -6);
-    createTree(10, -6);
+    // Ponte
+    const bridge = new THREE.Mesh(new THREE.BoxGeometry(10, 0.5, 4), new THREE.MeshStandardMaterial({ color: 0x8B4513 }));
+    bridge.position.set(25, 0, 0);
+    scene.add(bridge);
 
-    camera.position.set(0, 8, 16);
-    camera.lookAt(0, 0, 0);
+    // Prefeitura
+    const prefeitura = new THREE.Mesh(new THREE.BoxGeometry(8, 4, 5), new THREE.MeshStandardMaterial({ color: 0x336699 }));
+    prefeitura.position.set(0, 2, -20);
+    scene.add(prefeitura);
+    const fachadaPrefeitura = new THREE.Mesh(new THREE.PlaneGeometry(8, 4), new THREE.MeshStandardMaterial({ map: loader.load("./assets/prefeitura.png") }));
+    fachadaPrefeitura.position.set(0, 2, -18.2);
+    scene.add(fachadaPrefeitura);
 
+    const bancoPrefeitura = new THREE.Mesh(new THREE.BoxGeometry(4, 0.5, 1.2), new THREE.MeshStandardMaterial({ color: 0x996633 }));
+    bancoPrefeitura.position.set(0, 0.25, -15);
+    scene.add(bancoPrefeitura);
+
+    // HUD
     let hudText = "🎮 WebGloo \nUse WASD para mover o rapaz, setas para mover a moça!";
     document.getElementById("hud").innerText = hudText;
 
@@ -152,8 +122,11 @@
       if (cust1.position.z > -8) cust1.position.z = -12;
       cust2.position.z += 0.015;
       if (cust2.position.z > -8) cust2.position.z = -12;
+      clienteHead.position.set(cust1.position.x, cust1.position.y + 0.5, cust1.position.z);
+      clienteHead.rotation.z += 0.05;
     }
-
+    }
+    
     // Conversa no banco
     function checkConversation() {
       const distBoy = Math.sqrt((boy.position.x - bench.position.x)**2 + (boy.position.z - bench.position.z)**2);
