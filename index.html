@@ -257,31 +257,19 @@ function moveCustomers() {
       renderer.render(scene, camera);
     }
     animate();
-    <html lang="pt-BR">
+    
+  <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meu Hipermercado</title>
   <style>
-    body {
-      background-color: #000;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
+    body { margin:0; overflow:hidden; background:#000; }
+    h1, #hud {
+      position:absolute; width:100%; text-align:center; color:#fff; z-index:10;
     }
-    h1 {
-      color: #ffcc00;
-      font-size: 2em;
-      text-align: center;
-      margin: 10px;
-    }
-    #hud {
-      color: #fff;
-      text-align: center;
-      margin: 10px;
-      white-space: pre-line;
-    }
+    h1 { top:10px; color:#ffcc00; }
+    #hud { top:50px; white-space:pre-line; }
   </style>
 </head>
 <body>
@@ -289,7 +277,7 @@ function moveCustomers() {
   <div id="hud">🎮 WebGloo 
 Use WASD para mover o rapaz, setas para mover a moça!</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
   <script>
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -298,70 +286,76 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     document.body.appendChild(renderer.domElement);
 
     // Luzes
+    scene.add(new THREE.AmbientLight(0xffffff, 0.8));
     const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(10, 20, 10);
+    light.position.set(10,20,10);
     scene.add(light);
-    const ambient = new THREE.AmbientLight(0xffffff, 0.8);
-    scene.add(ambient);
+
+    // Funções auxiliares
+    function createLamp(x,z){
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.1,0.1,3), new THREE.MeshStandardMaterial({color:0xaaaaaa}));
+      pole.position.set(x,1.5,z);
+      scene.add(pole);
+      const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.3,16,16), new THREE.MeshStandardMaterial({color:0xffffaa, emissive:0xffffaa}));
+      lamp.position.set(x,4,z);
+      scene.add(lamp);
+    }
+    function createTree(x,z){
+      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.2,0.2,1), new THREE.MeshStandardMaterial({color:0x663300}));
+      trunk.position.set(x,0.5,z);
+      scene.add(trunk);
+      const crown = new THREE.Mesh(new THREE.SphereGeometry(1,16,16), new THREE.MeshStandardMaterial({color:0x228B22}));
+      crown.position.set(x,1.5,z);
+      scene.add(crown);
+    }
 
     // Rua
-    const street2 = new THREE.Mesh(
-      new THREE.PlaneGeometry(40, 20),
-      new THREE.MeshStandardMaterial({ color: 0x333333, side: THREE.DoubleSide })
-    );
-    street2.rotation.x = -Math.PI / 2;
-    street2.position.set(50, 0, 0);
-    scene.add(street2);
+    const street = new THREE.Mesh(new THREE.PlaneGeometry(40,20), new THREE.MeshStandardMaterial({color:0x333333, side:THREE.DoubleSide}));
+    street.rotation.x = -Math.PI/2;
+    street.position.set(50,0,0);
+    scene.add(street);
 
     // Padaria e borracharia
-    const bakery2 = new THREE.Mesh(
-      new THREE.BoxGeometry(6, 3, 4),
-      new THREE.MeshStandardMaterial({ color: 0xffcc66 })
-    );
-    bakery2.position.set(45, 1.5, -12);
-    scene.add(bakery2);
+    const bakery = new THREE.Mesh(new THREE.BoxGeometry(6,3,4), new THREE.MeshStandardMaterial({color:0xffcc66}));
+    bakery.position.set(45,1.5,-12);
+    scene.add(bakery);
 
-    const tireShop2 = new THREE.Mesh(
-      new THREE.BoxGeometry(6, 3, 4),
-      new THREE.MeshStandardMaterial({ color: 0x999999 })
-    );
-    tireShop2.position.set(55, 1.5, -13);
-    scene.add(tireShop2);
+    const tireShop = new THREE.Mesh(new THREE.BoxGeometry(6,3,4), new THREE.MeshStandardMaterial({color:0x999999}));
+    tireShop.position.set(55,1.5,-13);
+    scene.add(tireShop);
 
     // Ponte
-    const bridge = new THREE.Mesh(
-      new THREE.BoxGeometry(11, 0.1, 4),
-      new THREE.MeshStandardMaterial({ color: 0x8B4513 })
-    );
-    bridge.position.set(25, 0, 0);
+    const bridge = new THREE.Mesh(new THREE.BoxGeometry(11,0.1,4), new THREE.MeshStandardMaterial({color:0x8B4513}));
+    bridge.position.set(25,0,0);
     scene.add(bridge);
 
     // Banco
-    const bancoEncontro = new THREE.Mesh(
-      new THREE.BoxGeometry(4, 0.5, 1.2),
-      new THREE.MeshStandardMaterial({ color: 0x996633 })
-    );
-    bancoEncontro.position.set(0, 0.25, 0);
-    scene.add(bancoEncontro);
+    const banco = new THREE.Mesh(new THREE.BoxGeometry(4,0.5,1.2), new THREE.MeshStandardMaterial({color:0x996633}));
+    banco.position.set(0,0.25,0);
+    scene.add(banco);
+
+    // Árvores e postes
+    createTree(42,-6);
+    createTree(58,-6);
+    createLamp(44,-2);
+    createLamp(54,2);
 
     // Cubo de teste
-    const testCube = new THREE.Mesh(
-      new THREE.BoxGeometry(5,5,5),
-      new THREE.MeshStandardMaterial({ color: 0xff0000 })
-    );
-    testCube.position.set(50, 2.5, -12);
+    const testCube = new THREE.Mesh(new THREE.BoxGeometry(5,5,5), new THREE.MeshStandardMaterial({color:0xff0000}));
+    testCube.position.set(50,2.5,-12);
     scene.add(testCube);
 
     // Câmera
-    camera.position.set(50, 30, 50);
-    camera.lookAt(50, 0, -12);
+    camera.position.set(50,30,50);
+    camera.lookAt(50,0,-12);
 
-    // Loop
-    function animate() {
+    function animate(){
       requestAnimationFrame(animate);
-      renderer.render(scene, camera);
+      renderer.render(scene,camera);
     }
     animate();
+  </script>
+</body>
 
     // --- Controles do rapaz (WASD) e da moça (setas) ---
     window.addEventListener("keydown", (event) => {
