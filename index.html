@@ -193,7 +193,7 @@
     createLamp(44, -2);
     createLamp(54, 2);
 
-    // --- Ponte entre as duas regiões ---
+   // --- Ponte entre as duas regiões ---
     const bridge = new THREE.Mesh(
       new THREE.BoxGeometry(11, 0.1, 4),
       new THREE.MeshStandardMaterial({ color: 0x8B4513 })
@@ -257,8 +257,7 @@ function moveCustomers() {
       renderer.render(scene, camera);
     }
     animate();
-    </script>
-</body>
+
     // --- Controles do rapaz (WASD) e da moça (setas) ---
     window.addEventListener("keydown", (event) => {
       const key = event.key.toLowerCase();
@@ -274,7 +273,7 @@ function moveCustomers() {
       if (event.key === "ArrowDown") girl.position.z += 0.2;
       if (event.key === "ArrowLeft") girl.position.x -= 0.2;
       if (event.key === "ArrowRight") girl.position.x += 0.2;
-    });    
-    </script>
+    });
+  </script>
 </body>
 </html>
