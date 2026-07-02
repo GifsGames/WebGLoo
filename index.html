@@ -330,7 +330,7 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
       new THREE.PlaneGeometry(40, 20),
       new THREE.MeshStandardMaterial({ color: 0x333333, side: THREE.DoubleSide })
     );
-    street2.rotation.x = -Math.PI / 2; // chão
+    street2.rotation.x = -Math.PI / 2;
     street2.position.set(50, 0, 0);
     scene.add(street2);
 
@@ -374,8 +374,8 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     scene.add(testCube);
 
     // Câmera
-    camera.position.set(50, 30, 50);   // mais alta e afastada
-    camera.lookAt(50, 0, -12);         // olhando para os prédios
+    camera.position.set(50, 30, 50);
+    camera.lookAt(50, 0, -12);
 
     // Loop
     function animate() {
