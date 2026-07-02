@@ -305,13 +305,35 @@ function moveCustomers() {
       font-size: 2.5em;
       margin-bottom: 20px;
     }
+    .layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* espaço entre as imagens */
+}
+
+.principal {
+  width: 60%;
+  max-width: 600px;
+}
+
+.fachada {
+  width: 30%;
+  max-width: 300px;
+}
+
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Bem-vindo ao Meu Hipermercado!</h1>
-    <img src="https://i.imgur.com/o8zeC3r.png" alt="Hipermercado Amarelo">
+  <h1>Bem-vindo ao Meu Hipermercado!</h1>
+  <div class="layout">
+    <img src="https://i.imgur.com/o8zeC3r.png" alt="Hipermercado Amarelo" class="principal">
+    <img src="https://i.imgur.com/abcd1234.png" alt="Fachada Hipermercado" class="fachada">
   </div>
+</div>
+  
+
 </body>
 </html>
 
