@@ -285,55 +285,45 @@ function moveCustomers() {
   <title>Meu Hipermercado</title>
   <style>
     body {
-      background-color: #f4f4f4;
+      background-color: #000;
       font-family: Arial, sans-serif;
       text-align: center;
       margin: 0;
       padding: 0;
     }
-    .container {
+    .layout {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
       margin-top: 50px;
     }
     img {
-      width: 80%;
-      max-width: 800px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .principal {
+      width: 50%;
+      max-width: 600px;
+    }
+    .fachada {
+      width: 40%;
+      max-width: 500px;
     }
     h1 {
       color: #ffcc00;
       font-size: 2.5em;
-      margin-bottom: 20px;
+      margin-top: 30px;
     }
-    .layout {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px; /* espaço entre as imagens */
-}
-
-.principal {
-  width: 60%;
-  max-width: 600px;
-}
-
-.fachada {
-  width: 30%;
-  max-width: 300px;
-}
-
   </style>
 </head>
 <body>
-  <div class="container">
   <h1>Bem-vindo ao Meu Hipermercado!</h1>
   <div class="layout">
     <img src="https://i.imgur.com/o8zeC3r.png" alt="Hipermercado Amarelo" class="principal">
-    <img src="https://i.imgur.com/o8zeC3r.png" alt="Fachada Hipermercado" class="fachada">
+    <img src="https://i.imgur.com/3ZQ3ZQ3.png" alt="Fachada Hipermercado" class="fachada">
   </div>
-</div>
-  
-
 </body>
 </html>
+
 
