@@ -319,10 +319,12 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    // Luz
+    // Luzes
     const light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(10, 10, 10);
     scene.add(light);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambient);
 
     // Funções auxiliares
     function createTree(x, z) {
@@ -347,7 +349,7 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
       new THREE.PlaneGeometry(40, 20),
       new THREE.MeshStandardMaterial({ color: 0x333333, side: THREE.DoubleSide })
     );
-    street2.rotation.x = Math.PI / 2;
+    street2.rotation.x = -Math.PI / 2; // chão correto
     street2.position.set(50, 0, 0);
     scene.add(street2);
 
@@ -387,9 +389,17 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     bancoEncontro.position.set(0, 0.25, 0);
     scene.add(bancoEncontro);
 
+    // Cubo de teste para garantir que aparece
+    const testCube = new THREE.Mesh(
+      new THREE.BoxGeometry(2,2,2),
+      new THREE.MeshStandardMaterial({ color: 0xff0000 })
+    );
+    testCube.position.set(50, 1, -5);
+    scene.add(testCube);
+
     // Câmera ajustada para ver a segunda região
     camera.position.set(50, 10, 30);
-    camera.lookAt(50, 0, 0);
+    camera.lookAt(50, 0, -12);
 
     // Loop
     function animate() {
