@@ -295,12 +295,11 @@ function moveCustomers() {
 
 .fachada {
   position: absolute;
-  top: 80px;          /* diminua para subir, aumente para descer */
-  left: 50%;          /* centraliza horizontalmente */
-  transform: translateX(-50%);
-  width: 250px;
-  z-index: 10;        /* força a fachada a aparecer na frente */
+  top: 50px;   /* sobe ou desce a fachada */
+  left: 100px; /* move para a direita/esquerda */
+  width: 200px;
 }
+
 
     body {
       background-color: #000;
@@ -339,10 +338,14 @@ function moveCustomers() {
 <body>
   <h1>Bem-vindo ao Meu Hipermercado!</h1>
 <div class="predio">
+  <!-- prédio principal -->
   <img src="https://i.imgur.com/o8zeC3r.png" 
        alt="Prédio Hipermercado" class="principal">
-  <img src="https://i.imgur.com/bZ4xOsL.png" 
+  
+  <!-- fachada adesivada -->
+  <img src="https://i.imgur.com/I9vsP7G.png" 
        alt="Fachada Hipermercado" class="fachada">
 </div>
+
 </body>
 </html>
