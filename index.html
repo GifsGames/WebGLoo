@@ -301,21 +301,6 @@ function moveCustomers() {
       margin: 20px;
       white-space: pre-line;
     }
-    .predio {
-      position: relative;
-      display: inline-block;
-    }
-    .principal {
-      width: 600px;
-    }
-    .fachada {
-      position: absolute;
-      top: 80px;          /* ajuste altura */
-      left: 50%;          /* centraliza */
-      transform: translateX(-50%);
-      width: 250px;
-      z-index: 10;        /* garante que fique na frente */
-    }
   </style>
 </head>
 <body>
@@ -323,16 +308,9 @@ function moveCustomers() {
   <div id="hud">🎮 WebGloo 
 Use WASD para mover o rapaz, setas para mover a moça!</div>
 
-  <!-- prédio com fachada sobreposta -->
-  <div class="predio">
-    <img src="https://i.imgur.com/o8zeC3r.png" 
-         alt="Prédio Hipermercado" class="principal">
-    <img src="https://i.imgur.com/SEU_LINK_FACHADA.png" 
-         alt="Fachada Hipermercado" class="fachada">
-  </div>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
+    // Cena, câmera e renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
