@@ -25,12 +25,12 @@
       align-items: center;
       font-family: 'Arial Black', sans-serif;
       font-size: 2em;
-      z-index: 10;
       animation: fadeIn 2s ease-in;
     }
     #intro {
       background: radial-gradient(circle, #000 70%, #222 100%);
       color: #ffcc00;
+      z-index: 10;
     }
     #intro button {
       margin-top: 20px;
@@ -134,7 +134,7 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     cuboAmarelo.position.set(16, 1, -12);
     scene.add(cuboAmarelo);
 
-    // Cubo azul (casa esquerda, simétrico)
+    // Cubo azul (casa esquerda)
     const cuboAzul = new THREE.Mesh(
       new THREE.BoxGeometry(2, 2, 2),
       new THREE.MeshStandardMaterial({ color: 0x0000ff })
