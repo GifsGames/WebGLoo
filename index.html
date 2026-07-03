@@ -126,12 +126,12 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     cuboAmarelo.position.set(16, 1, -12);
     scene.add(cuboAmarelo);
 
-    // Cubo azul em outro lugar, mesma dimensão
+    // Cubo azul em outra "casa" (mesma dimensão)
     const cuboAzul = new THREE.Mesh(
       new THREE.BoxGeometry(2, 2, 2),
       new THREE.MeshStandardMaterial({ color: 0x0000ff })
     );
-    cuboAzul.position.set(-10, 1, -12); // novo local, mesma altura e tamanho
+    cuboAzul.position.set(-16, 1, 12); // novo local, mesma altura e tamanho
     scene.add(cuboAzul);
 
     // HUD
