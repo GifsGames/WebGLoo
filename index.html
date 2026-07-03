@@ -85,6 +85,8 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     dirLight.position.set(5, 10, 7.5);
     scene.add(dirLight);
 
+    const loader = new THREE.TextureLoader();
+
     // Rua principal
     const street = new THREE.Mesh(
       new THREE.PlaneGeometry(40, 20),
@@ -109,7 +111,14 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     prefeitura.position.set(-12, 2, 12);
     scene.add(prefeitura);
 
-    // Banco
+    const fachadaPrefeitura = new THREE.Mesh(
+      new THREE.PlaneGeometry(8, 4),
+      new THREE.MeshStandardMaterial({ map: loader.load("https://i.imgur.com/o8zeC3r.png") })
+    );
+    fachadaPrefeitura.position.set(-12, 3, 9);
+    scene.add(fachadaPrefeitura);
+    
+    // Banco em frente à prefeitura
     const bancoPrefeitura = new THREE.Mesh(
       new THREE.BoxGeometry(4, 0.5, 1.2),
       new THREE.MeshStandardMaterial({ color: 0x996633 })
@@ -125,12 +134,12 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     cuboAmarelo.position.set(12, 1, -12);
     scene.add(cuboAmarelo);
 
-    // Cubo azul (casa esquerda)
+    // Cubo azul (nova casa, perto da ponte)
     const cuboAzul = new THREE.Mesh(
       new THREE.BoxGeometry(2, 2, 2),
       new THREE.MeshStandardMaterial({ color: 0x0000ff })
     );
-    cuboAzul.position.set(-12, 1, -12);
+    cuboAzul.position.set(0, 1, 6); // posição diferente, visível perto da ponte
     scene.add(cuboAzul);
 
     // Loop de animação
