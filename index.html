@@ -15,7 +15,6 @@
       white-space: pre-line;
       z-index: 5;
     }
-    /* Entrada estilo cinema */
     #intro {
       position: fixed;
       top: 0; left: 0;
@@ -44,7 +43,6 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    /* Saída estilo créditos */
     #outro {
       position: fixed;
       top: 0; left: 0;
@@ -120,12 +118,20 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     bancoPrefeitura.position.set(12, 0.15, -8);
     scene.add(bancoPrefeitura);
 
-    // Cubo azul reposicionado junto ao cubo amarelo
+    // Cubo amarelo
+    const cuboAmarelo = new THREE.Mesh(
+      new THREE.BoxGeometry(2, 2, 2),
+      new THREE.MeshStandardMaterial({ color: 0xffff00 })
+    );
+    cuboAmarelo.position.set(16, 1, -12);
+    scene.add(cuboAmarelo);
+
+    // Cubo azul ao lado do amarelo
     const cuboAzul = new THREE.Mesh(
       new THREE.BoxGeometry(2, 2, 2),
       new THREE.MeshStandardMaterial({ color: 0x0000ff })
     );
-    cuboAzul.position.set(18, 1, -12); // lado do amarelo
+    cuboAzul.position.set(18, 1, -12);
     scene.add(cuboAzul);
 
     // HUD
