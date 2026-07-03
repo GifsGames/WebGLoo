@@ -134,12 +134,12 @@ Use WASD para mover o rapaz, setas para mover a moça!</div>
     cuboAmarelo.position.set(12, 1, -12);
     scene.add(cuboAmarelo);
 
-    // Cubo azul (nova casa, perto da ponte)
+    // Cubo azul (nova casa, perto da prefeitura)
     const cuboAzul = new THREE.Mesh(
       new THREE.BoxGeometry(2, 2, 2),
       new THREE.MeshStandardMaterial({ color: 0x0000ff })
     );
-    cuboAzul.position.set(0, 1, 6); // posição diferente, visível perto da ponte
+    cuboAzul.position.set(-12, 1, 6); // posição diferente, visível perto da prefeitura
     scene.add(cuboAzul);
 
     // Loop de animação
