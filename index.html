@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>WebGloo</title>
+  <title>WebGlo</title>
   <style>
     body { margin: 0; overflow: hidden; background: #111; }
     canvas { display: block; }
@@ -17,7 +17,7 @@
   </style>
 </head>
 <body>
-  <div id="hud">🎮 WebGloo \nUse WASD para mover o rapaz, setas para mover a moça!</div>
+  <div id="hud">🎮 WebGlo \nUse WASD para mover o rapaz, setas para mover a moça!</div>
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script>
     const scene = new THREE.Scene();
@@ -146,7 +146,7 @@ scene.add(fachadaBorracharia);
     camera.position.set(0, 8, 16);
     camera.lookAt(0, 0, 0);
 
-    let hudText = "🎮 WebGloo \nUse WASD para mover o rapaz, setas para mover a moça!";
+    let hudText = "🎮 WebGlo \nUse WASD para mover o rapaz, setas para mover a moça!";
     document.getElementById("hud").innerText = hudText;
 
     // Controles
@@ -193,7 +193,7 @@ const bakery2 = new THREE.Mesh(
   new THREE.BoxGeometry(6, 3, 4),
   new THREE.MeshStandardMaterial({ color: 0xffcc66 })
 );
-bakery2.position.set(45, 1.5, -12);
+bakery2.position.set(-45, 1.5, 12);
 scene.add(bakery2);
 
 // Borracharia duplicada
